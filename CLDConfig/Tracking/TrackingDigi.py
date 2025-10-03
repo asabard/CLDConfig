@@ -18,13 +18,6 @@
 #
 from Gaudi.Configuration import WARNING, DEBUG, INFO
 from Configurables import VTXdigitizerDetailed
-from Configurables import AuditorSvc, ChronoAuditor
-
-# Activer le ChronoAuditor
-AuditorSvc().Auditors = ["ChronoAuditor"]
-ChronoAuditor().OutputLevel = INFO
-
-
 
 VTXBarrelDigitizer = VTXdigitizerDetailed("VTXBarrelDigitizer",
                                           inputSimHits = ["VertexBarrelCollection"],
@@ -47,10 +40,9 @@ VTXEndcapDigitizer = VTXdigitizerDetailed("VTXEndcapDigitizer",
                                           detectorName = "VertexEndcap",
                                           LocalNormalVectorDir = "y",
                                           tResolution = [0.,0.,0.,0.,0.,0.],
-                                          Threshold = 3000.0,
-                                          ThresholdSmearing = 35.0,
-                                          forceHitsOntoSurface = False,
-                                          OutputLevel = INFO,
+                                          Threshold = 100.0, 
+                                          ThresholdSmearing = 20.0, 
+                                          OutputLevel = DEBUG,
                                           DebugHistos = True,
                                           DebugFileName = "Debug_VTXEndcapDigitizer.root"
                                           )
@@ -62,10 +54,9 @@ InnerTrackerBarrelDigitizer = VTXdigitizerDetailed("InnerTrackerBarrelDigitizer"
                                                    detectorName = "InnerTrackerBarrel",
                                                    LocalNormalVectorDir = "z",
                                                    tResolution = [0.,0.,0.],
-                                                   Threshold = 3000.0,
-                                                   ThresholdSmearing = 35.0,
-                                                   forceHitsOntoSurface = False,
-                                                   OutputLevel = INFO,
+                                                   Threshold = 100.0, 
+                                                   ThresholdSmearing = 20.0, 
+                                                   OutputLevel = DEBUG,
                                                    DebugHistos = True,
                                                    DebugFileName = "Debug_InnerTrackerBarrelDigitizer.root"
                                                    )
@@ -77,10 +68,9 @@ InnerTrackerEndcapDigitizer = VTXdigitizerDetailed("InnerTrackerEndcapDigitizer"
                                                    detectorName = "InnerTrackerEndcap",
                                                    LocalNormalVectorDir = "z",
                                                    tResolution = [0.,0.,0.,0.,0.,0.,0.],
-                                                   Threshold = 3000.0,
-                                                   ThresholdSmearing = 35.0,
-                                                   forceHitsOntoSurface = False,
-                                                   OutputLevel = INFO,
+                                                   Threshold = 100.0, 
+                                                   ThresholdSmearing = 20.0, 
+                                                   OutputLevel = DEBUG,
                                                    DebugHistos = True,
                                                    DebugFileName = "Debug_InnerTrackerEndcapDigitizer.root"
                                                    )
@@ -92,10 +82,9 @@ OuterTrackerBarrelDigitizer = VTXdigitizerDetailed("OuterTrackerBarrelDigitizer"
                                                    detectorName = "OuterTrackerBarrel",
                                                    LocalNormalVectorDir = "z",
                                                    tResolution = [0.,0.,0.],
-                                                   Threshold = 3000.0,
-                                                   ThresholdSmearing = 35.0,
-                                                   forceHitsOntoSurface = False,
-                                                   OutputLevel = INFO,
+                                                   Threshold = 100.0, 
+                                                   ThresholdSmearing = 20.0, 
+                                                   OutputLevel = DEBUG,
                                                    DebugHistos = True,
                                                    DebugFileName = "Debug_OuterTrackerBarrelDigitizer.root"
                                                    )
@@ -107,10 +96,9 @@ OuterTrackerEndcapDigitizer = VTXdigitizerDetailed("OuterTrackerEndcapDigitizer"
                                                    detectorName = "OuterTrackerEndcap",
                                                    LocalNormalVectorDir = "z",
                                                    tResolution = [0.,0.,0.,0.],
-                                                   Threshold = 3000.0,
-                                                   ThresholdSmearing = 35.0,
-                                                   forceHitsOntoSurface = False,
-                                                   OutputLevel = INFO,
+                                                   Threshold = 100.0,
+                                                   ThresholdSmearing = 20.0, 
+                                                   OutputLevel = DEBUG,
                                                    DebugHistos = True,
                                                    DebugFileName = "Debug_OuterTrackerEndcapDigitizer.root"
                                                    )
@@ -123,6 +111,3 @@ TrackingDigiSequence = [
     OuterTrackerBarrelDigitizer,
     OuterTrackerEndcapDigitizer
 ]
-# Activer le chronométrage
-for algo in TrackingDigiSequence:
-    algo.AuditExecute = True
