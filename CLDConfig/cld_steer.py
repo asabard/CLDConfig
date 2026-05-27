@@ -135,7 +135,7 @@ SIM.filter.filters = {'edep0': {'parameter': {'Cut': 0.0}, 'name': 'EnergyDeposi
 SIM.filter.mapDetFilter = {}
 
 ##  default filter for tracking sensitive detectors; this is applied if no other filter is used for a tracker
-SIM.filter.tracker = "edep1kev"
+SIM.filter.tracker = "edep0"
 
 
 ################################################################################
@@ -226,7 +226,7 @@ SIM.part.saveProcesses = ['Decay']
 ## Configuration for the PhysicsList
 ################################################################################
 SIM.physics.decays = False
-SIM.physics.list = "FTFP_BERT"
+SIM.physics.list = "FTFP_BERT_EMZ"
 
 ##  location of particle.tbl file containing extra particles and their lifetime information
 ##
@@ -241,7 +241,7 @@ SIM.physics.pdgfile = os.path.join( os.environ.get("DD4hepINSTALL"), "examples/D
 ##     Set printlevel to DEBUG to see a printout of all range cuts,
 ##     but this only works if range cut is not "None"
 ##
-SIM.physics.rangecut = 0.7*mm
+SIM.physics.rangecut = 0.05*mm
 
 SIM.physics.rejectPDGs = {1,2,3,4,5,6,21,23,24,25}
 
@@ -257,3 +257,13 @@ SIM.random.luxury = 1
 SIM.random.replace_gRandom = True
 SIM.random.seed = None
 SIM.random.type = None
+
+################################################################################
+## BIB MODE — extra Geant4 UI commands for soft EM cascade
+################################################################################
+SIM.ui.commandsConfigure = [
+    "/cuts/setLowEdge 50 eV",
+    "/process/em/lowestElectronEnergy 1 eV",
+    "/process/em/auger true",
+    "/process/em/deexcitationIgnoreCut true",
+]
