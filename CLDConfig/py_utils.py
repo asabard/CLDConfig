@@ -155,3 +155,28 @@ def parse_collection_patch_file(patch_file: Union[str, os.PathLike]) -> List[str
 
     # Flatten the list of lists into one large list
     return [s for strings in patch_colls for s in strings]
+
+
+def to_marlin_dict(params_dict: Dict[str, Any]) -> Dict[str, Any]:
+    """Convert a dictionary to a Marlin-compatible format.
+
+    Args:
+        params_dict (Dict[str, Any]): The dictionary to convert.
+
+    Returns:
+        Dict[str, Any]: The converted dictionary.
+    """
+
+    result = {}
+    for k, v in params_dict.items():
+        if isinstance(v, bool):
+            result[k] = [str(v).lower()]
+        elif isinstance(v, list):
+            result[k] = [str(elem) for elem in v]
+        elif isinstance(v, (float, int)):
+            result[k] = [str(v)]
+        elif isinstance(v, str):
+            result[k] = [v]
+        else:
+            result[k] = v
+    return result
